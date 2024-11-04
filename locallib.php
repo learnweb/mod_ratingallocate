@@ -306,7 +306,7 @@ class ratingallocate {
         }
         $raters = $this->get_raters_in_course();
         $completion = new completion_info($this->course);
-        if ($completion->is_enabled($this->coursemodule)) {
+        if ($completion->is_enabled($this->coursemodule) == COMPLETION_TRACKING_AUTOMATIC) {
             foreach ($raters as $rater) {
                 $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $rater->id);
             }
@@ -745,7 +745,7 @@ class ratingallocate {
                 }
                 $raters = $this->get_raters_in_course();
                 $completion = new completion_info($this->course);
-                if ($completion->is_enabled($this->coursemodule)) {
+                if ($completion->is_enabled($this->coursemodule) == COMPLETION_TRACKING_AUTOMATIC) {
                     foreach ($raters as $rater) {
                         $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $rater->id);
                     }
@@ -1045,7 +1045,7 @@ class ratingallocate {
         $transaction->allow_commit();
 
         $completion = new completion_info($this->course);
-        if ($completion->is_enabled($this->coursemodule)) {
+        if ($completion->is_enabled($this->coursemodule) == COMPLETION_TRACKING_AUTOMATIC) {
             foreach ($possibleusers as $userid) {
                 $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $userid);
             }
@@ -1445,7 +1445,7 @@ class ratingallocate {
 
         $completion = new completion_info($this->course);
         $raters = $this->get_raters_in_course();
-        if ($completion->is_enabled($this->coursemodule)) {
+        if ($completion->is_enabled($this->coursemodule) == COMPLETION_TRACKING_AUTOMATIC) {
             foreach ($raters as $rater) {
                 $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $rater->id);
             }
@@ -1956,7 +1956,7 @@ class ratingallocate {
             $transaction->allow_commit();
 
             $completion = new completion_info($this->course);
-            if ($completion->is_enabled()) {
+            if ($completion->is_enabled() == COMPLETION_TRACKING_AUTOMATIC) {
                 $completion->set_module_viewed($this->coursemodule, $userid);
                 $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $userid);
             }
@@ -2099,7 +2099,7 @@ class ratingallocate {
             $transaction->allow_commit();
 
             $completion = new completion_info($this->course);
-            if ($completion->is_enabled($this->coursemodule)) {
+            if ($completion->is_enabled($this->coursemodule) == COMPLETION_TRACKING_AUTOMATIC) {
                 foreach ($allusers as $rater) {
                     $completion->update_state($this->coursemodule, COMPLETION_UNKNOWN, $rater->id);
                 }
